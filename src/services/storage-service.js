@@ -16,7 +16,7 @@ export const storageService = {
   
   function get(entityType, entityId) {
     return query(entityType).then((entities) =>
-      entities.find((entity) => entity._id === entityId)
+      entities.find((entity) => entity.id === entityId)
     )
   }
   

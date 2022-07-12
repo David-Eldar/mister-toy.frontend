@@ -5,39 +5,55 @@
 </template> -->
 
 <template>
-  <GMapMap
-      :center="center"
-      :zoom="7"
-      map-type-id="terrain"
-      style="width: 500px; height: 300px"
-  >
-    <GMapCluster>
-      <GMapMarker
-          :key="index"
-          v-for="(m, index) in markers"
-          :position="m.position"
-          :clickable="true"
-          :draggable="true"
-          @click="center=m.position"
-      />
-    </GMapCluster>
-  </GMapMap>
+  <section class="about">
+    <div class="about-lyrics">
+      <h1>About Us</h1>
+      <p>
+      blah blah blah... blahblah, blah blah... <br>
+      blah blah blah blah blah blah blah... blah blah blah blah! <br>
+      blaaaahh 😃😃😃
+      </p>
+    </div>
+  
+    <!-- <section class="map"> -->
+      <h1>Our Branches!</h1>
+      <section class="map-container">
+    <GMapMap :center="center"
+             :zoom="zoom" 
+             map-type-id="terrain" class="map" >
+
+              
+        <GMapMarker v-for="(m, index) in markers"
+                    :key="index" 
+                    :position="m.position"
+                    :clickable="true"
+                    :draggable="true"
+                     @click="center = m.position" />
+    </GMapMap>
+    </section>
+    <!-- </section> -->
+    
+  </section>
 </template>
 <script>
 export default {
   name: 'App',
   data() {
     return {
-      center: {lat: 51.093048, lng: 6.842120},
+      center: { lat: 32.066278, lng: 34.830301 },
+      title: 'Israel',
+      zoom: 13,
       markers: [
-        {
-          position: {
-            lat: 51.093048, lng: 6.842120
-          },
-        }
-        , // Along list of clusters
+        { position: { lat: 32.109323, lng: 34.855429 }, title: 'Tel Aviv-Yafo' },
+        { position: { lat: 31.771959, lng: 35.217018 }, title: 'Jerusalem' },
+        { position: { lat: 32.794044, lng: 34.989571 }, title: 'Haifa' },
+        { position: { lat: 29.55805, lng: 34.94821 }, title: 'Eilat' },
       ]
     }
   }
 }
 </script>
+
+<style>
+
+</style>
