@@ -4,11 +4,14 @@ import { storageService } from './storage-service.js'
 import { utilService } from './util-service.js'
 import axios from 'axios'
 
-const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Flexible", "Heros","Social"]
+const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Flexible", "Heros", "Social"]
 
 const KEY = 'toys_db'
 
-const API = '//localhost:3030/api/toy/'
+// const API = '//localhost:3030/api/toy/'
+const API = (process.env.NODE_ENV !== 'development')
+    ? '/api/toy'
+    : '//localhost:3030/api/toy';
 
 //_createToys ()
 

@@ -8,6 +8,23 @@ export default {
         toys(state) {
             return state.toys
         },
+        getLabelsCount({ toys }) {
+            if (!toys) return
+            let labelsCount = {}
+            toys.forEach((toy) => {
+                toy.labels.forEach((label) => {
+                    if (!labelsCount[label]) labelsCount[label] = 0
+                    labelsCount[label]++
+                })
+            })
+            return labelsCount
+        },
+        getToysStock({ toys }) {
+            if (!toys) return
+            let toysStock = [0, 0]
+            toys.forEach((toy) => (toy.inStock ? toysStock[0]++ : toysStock[1]++))
+            return toysStock
+        },
     },
     mutations: {
         setToys(state, { toys }) {
