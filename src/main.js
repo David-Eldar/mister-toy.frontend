@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './styles/styles.css'
-// import './styles/styles.sass'
+
+import './styles/styles.scss'
 
 
 // elements from mpn librery
@@ -23,6 +23,13 @@ app.use(VueGoogleMaps, {
         key: 'AIzaSyD_flz4RoBeRAj3OdlSreR2gGhtqWYjO70',
     },
 })
+
+// const map = {
+//     load: {
+//         key: 'AIzaSyD_flz4RoBeRAj3OdlSreR2gGhtqWYjO70',
+//     },
+// }
+// console.log('map:',map)
 
 
 

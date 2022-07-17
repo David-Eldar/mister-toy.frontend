@@ -23,29 +23,77 @@ export const toyService = {
     getEmptyToy,
 }
 
-function query(filterBy) {
-    return axios.get(API, { params: filterBy }).then((res) => res.data)
+async function query(filterBy) {
+
+    var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+    return httpService.get(`review${queryStr}`)
+    
+
+    // try {
+    //     const res = await axios.get(API, { params: filterBy })
+    //     return res.data
+    // } catch (err) {
+    //     console.err(err)
+    // }
+
+    // return axios.get(BASE_URL, { params: filterBy }).then((res) => res.data)
     // return storageService.query(TOY_KEY)
 }
 
-function getById(toyId) {
-    return axios.get(API + toyId).then((res) => res.data);
-}
+async function getById(toyId) {
+    try {
+        const res = await axios.get(API + toyId)
+        return res.data
+    } catch (err) {
 
-function remove(toyId) {
-    return axios.delete(API + toy._id).then((res) => res.data);
-}
-
-function save(toy) {
-    if (toy._id) {
-        return axios.put(API + toy._id, toy).then((res) => res.data);
-    } else {
-        return axios.post(API, toy).then((res) => res.data);
     }
+
+    // return axios.get(BASE_URL + toyId).then((res) => res.data);
+    // return storageService.get(KEY, toyId)
+}
+
+
+async function remove(toyId) {
+
+    try {
+        const res = await axios.delete(API + toyId)
+        return res.data
+    } catch (err) {
+
+    }
+
+    // if (toy._id) {
+    //     return axios.put(API + toy._id, toy).then((res) => res.data);
+    // } else {
+    //     return axios.post(API, toy).then((res) => res.data);
+    // }
+}
+
+async function save(toy) {
+
+    try {
+        if (toy._id) {
+            const res = await axios.put(BASE_URL + toy._id, toy)
+            return res.data
+        } else {
+            const res = await axios.post(BASE_URL, toy)
+            return res.data
+        }
+    } catch (err) {
+        console.err(err)
+    }
+
+    // if (toy._id) {
+    //     return axios.put(API + toy._id, toy).then((res) => res.data);
+    // } else {
+    //     return axios.post(API, toy).then((res) => res.data);
+    // }
 
     // if (toy.id) return storageService.put(KEY, toy)
     // return storageService.post(KEY, toy)
 }
+
+
 
 function getEmptyToy() {
     return {
